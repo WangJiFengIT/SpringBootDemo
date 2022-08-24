@@ -1,0 +1,48 @@
+server:
+  port: 1997
+
+#数据库配置
+spring:
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://192.168.10.38:3306/test?characterEncoding=utf-8&useSSL=false&useAffectedRows=true&serverTimezone=Asia/Shanghai
+    username: root
+    password: asdfasdf
+    initialSize: 10
+    minIdle: 10
+    maxActive: 50
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 30000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    filters: stat,wall,slf4j
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+
+#redis配置
+  redis:
+    database: 8
+    host: 192.168.10.46
+    port: 6379
+    password: 21cnjycom
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: 1
+        max-idle: 8
+        min-idle: 1
+    timeout: 3000
+
+mybatis-plus:
+  type-aliases-package: com.example.demo.mapper
+  mapper-locations: classpath:com.example.demo.mapper/*.xml
+  #兼容驼峰
+  configuration:
+    map-underscore-to-camel-case: true
+    #日志
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

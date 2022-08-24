@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.StudentMapper">
+    <select id="getStudentByGuid" resultType="com.example.demo.pojo.Student" parameterType="String">
+        SELECT * FROM student WHERE  Guid=#{guid} LIMIT 1
+    </select>
+
+    <select id="getStudentList" resultType="map" parameterType="map">
+        SELECT * FROM student
+    </select>
+
+    <select id="delByGuid" parameterType="String">
+        DELETE  FROM  student WHERE  Guid=#{guid}
+    </select>
+
+    <select id="updateStudent" parameterType="com.example.demo.pojo.Student">
+        UPDATE student SET `Name`=#{Name},`Age`=#{Age} WHERE Guid=#{Guid}
+    </select>
+
+    <select id="addStudent" parameterType="com.example.demo.pojo.Student">
+        INSERT INTO student(`Guid`,`Name`,`Age`) VALUES (#{Guid},#{Name},#{Age})
+    </select>
+
+</mapper>
